@@ -1,5 +1,5 @@
 <template>
-  <div v-idle="logout" class="main-wrapper">
+  <div class="main-wrapper">
     <base-notifications />
     <Nuxt class="nuxt-page" />
   </div>
