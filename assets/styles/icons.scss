@@ -1,0 +1,44 @@
+i.icon {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  background-color: transparent;
+}
+
+.i-basket {
+  @extend i, .icon;
+  mask: url('@/assets/images/icons/basket.svg') no-repeat center / contain;
+}
+.i-hamburger {
+  @extend i, .icon;
+  mask: url('@/assets/images/icons/hamburger.svg') no-repeat center / contain;
+}
+.i-logo-desktop {
+  @extend i, .icon;
+  mask: url('@/assets/images/icons/logo-desktop.svg') no-repeat center / contain;
+}
+.i-logo-mobile {
+  @extend i, .icon;
+  mask: url('@/assets/images/icons/logo-mobile.svg') no-repeat center / contain;
+}
+.i-twitter {
+  @extend i, .icon;
+  mask: url('@/assets/images/icons/twitter.svg') no-repeat center / contain;
+}
+.i-facebook {
+  @extend i, .icon;
+  mask: url('@/assets/images/icons/facebook.svg') no-repeat center / contain;
+}
+.i-youtube {
+  @extend i, .icon;
+  mask: url('@/assets/images/icons/youtube.svg') no-repeat center / contain;
+}
+.i-instagram {
+  @extend i, .icon;
+  mask: url('@/assets/images/icons/instagram.svg') no-repeat center / contain;
+}
+.i-user {
+  @extend i, .icon;
+  mask: url('@/assets/images/icons/user.svg') no-repeat center / contain;
+}
+

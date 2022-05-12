@@ -14,16 +14,27 @@
   </div>
 </template>
 
+<script>
+export default {
+  props: {
+    item: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+}
+</script>
+
 <style lang="scss" scoped>
 .product-card {
-  box-shadow: var(--shadow-main), var(--shadow-dropdown);
-  border-radius: var(--border-radius);
+  box-shadow: $shadow-main, $shadow-dropdown;
+  border-radius: $border-radius;
   .picture {
     height: 252px;
     width: 100%;
-    background: var(--gradient-radial);
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
+    background: $gradient-radial;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
     position: relative;
     &::before {
       content: '';
@@ -38,7 +49,10 @@
     }
   }
   .description {
+    background-color: $color-white;
     padding: 24px;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
     :not(:last-child) {
       margin-bottom: 6px;
     }
@@ -48,14 +62,14 @@
     }
     .text {
       min-height: 42px;
-      color: var(--color-black-light);
+      color: $color-black-light;
       font-size: 16px;
       font-family: 'Work Sans', sans-serif;
       font-weight: 500;
     }
     .count {
       border-radius: 500px;
-      border: 1px solid var(--color-grey);
+      border: 1px solid $color-grey;
       width: fit-content;
       font-size: 12px;
       font-weight: bold;
@@ -67,13 +81,3 @@
   }
 }
 </style>
-<script>
-export default {
-  props: {
-    item: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
-}
-</script>

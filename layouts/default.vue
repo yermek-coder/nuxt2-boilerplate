@@ -1,5 +1,6 @@
 <template>
   <div class="main-wrapper">
+    <layout-navbar></layout-navbar>
     <base-notifications />
     <Nuxt class="nuxt-page" />
   </div>
