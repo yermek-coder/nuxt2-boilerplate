@@ -1,5 +1,8 @@
 <template>
-  <h1>Boilerplate</h1>
+  <div>
+    <h1>Boilerplate</h1>
+    <base-checkbox></base-checkbox>
+  </div>
 </template>
 
 <script>
