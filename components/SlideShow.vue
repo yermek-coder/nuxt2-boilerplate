@@ -121,14 +121,12 @@ export default {
     grid-auto-flow: column;
     grid-auto-columns: 100%;
     width: 100%;
-    padding: 0 0.25rem;
     height: 100%;
     overflow-y: scroll;
     overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     > div {
-      min-height: 0;
       scroll-snap-align: start;
       height: 100%;
       overflow: auto;
