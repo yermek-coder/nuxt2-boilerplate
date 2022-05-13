@@ -2,31 +2,29 @@ import Vue from 'vue'
 
 Vue.directive('intersection', {
   inserted: (el, binding) => {
+    const thrsh = Object.keys(binding.modifiers)[0]/10
     const options = {
       rootMargin: '0px',
-      threshold: 0.9,
+      threshold: thrsh ? thrsh : 1.0,
     }
     const callback = (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const args = entry.target?.dataset?.intersection_args
-          if (args && args.length) {
-            binding.value(...args)
+          const arg = binding?.arg
+          if (arg) {
+            binding.value(arg)
           } else binding.value()
         }
       })
-      // if (entries[0].isIntersecting) {
-      //   binding.value()
-      // }
     }
-    if (window.observer) {
-      window.observer.observe(el)
-      return
-    }
-    window.observer = new IntersectionObserver(callback, options)
-    window.observer.observe(el)
+    if (!window.observers) window.observers = []
+    window.observers.push(new IntersectionObserver(callback, options))
+    window.observers[window.observers.length - 1].observe(el)
   },
   unbind: () => {
-    window.observer.disconnect()
+    if (window.observers && window.observers.length) {
+      window.observers.forEach((el) => el.disconnect())
+    }
+    window.observers = []
   },
 })

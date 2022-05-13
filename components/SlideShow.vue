@@ -7,16 +7,10 @@
         :style="`background-image: url('${image.url}');`"
         :id="`image-${image.id}`"
         :data-intersection_args="[image.id]"
-        v-intersection="intersectHandler"
+        v-intersection:[image.id].9="intersectHandler"
       ></div>
     </div>
-    <!-- <div class="scrollbar">
-      <div class="thumb" :style="thumbHeight"></div>
-    </div> -->
     <div class="thumbnails">
-      <!-- <div v-for="image in images" :key="image.id" @click="scrollTo(image.id)">
-        <img :src="image.url" alt="image" />
-      </div> -->
       <span
         v-for="image in images"
         :key="image.id"
@@ -41,7 +35,7 @@ export default {
       r.keys().forEach((key, i) =>
         this.images.push({
           url: r(key),
-          id: i,
+          id: i + 1,
         })
       )
     }
@@ -62,7 +56,7 @@ export default {
       el.scrollIntoView({ behavior: 'smooth' })
     },
     intersectHandler(id) {
-      this.current = parseInt(id)
+      this.current = id
     },
   },
 }
