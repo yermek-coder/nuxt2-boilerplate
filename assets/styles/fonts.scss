@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 @import 'variables';
+@import 'responsive';
+
 body {
   font-family: 'Montserrat', sans-serif;
 }
@@ -7,11 +9,13 @@ h1,
 h6 {
   color: $primary-2;
 }
+
 h2,
 h4,
 h5 {
   color: $white;
 }
+
 h1 {
   font-size: 32px;
   font-weight: 900;
@@ -19,11 +23,14 @@ h1 {
 h2 {
   font-size: 32px;
   font-weight: 700;
+  @include respond('lg') {
+    font-size: 38px;
+  }
 }
 h3 {
   font-size: 26px;
   font-weight: 900;
-	color: $primary;
+  color: $primary;
 }
 h4 {
   font-size: 26px;
@@ -36,4 +43,5 @@ h5 {
 p {
   color: $secondary;
   font-size: 16px;
+  font-weight: 400;
 }

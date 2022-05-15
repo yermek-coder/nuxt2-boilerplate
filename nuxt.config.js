@@ -47,7 +47,7 @@ export default {
   ],
 
   styleResources: {
-    scss: ['@/assets/styles/main.scss'],
+    scss: ['@/assets/styles/global.scss'],
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

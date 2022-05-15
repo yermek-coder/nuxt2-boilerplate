@@ -10,7 +10,7 @@ $breakpoints: (
 /// @author Kitty Giraudel
 /// @param {String} $breakpoint - Breakpoint name
 /// @require $breakpoints
-@mixin respond-to($breakpoint) {
+@mixin respond($breakpoint) {
   // If the key exists in the map
   @if map-has-key($breakpoints, $breakpoint) {
     // Prints a media query based on the value
@@ -23,5 +23,29 @@ $breakpoints: (
   @else {
     @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
         + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+.container {
+  width: 100%;
+  padding: 0 16px;
+  @include respond('sm') {
+    padding: 0 24px;
+  }
+  @include respond('md') {
+    padding-left: 42px;
+    padding-right: 100px;
+  }
+  @include respond('lg') {
+    padding: 0;
+    max-width: 940px;
+    margin: 0 auto;
+  }
+}
+
+.container-wide {
+  @extend .container;
+  @include respond('lg') {
+    max-width: 1160px;
   }
 }
