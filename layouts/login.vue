@@ -1,7 +1,7 @@
 <template>
   <div class="main-wrapper">
     <base-notifications />
-    <Nuxt class="nuxt-page" />
+    <Nuxt />
   </div>
 </template>
 
@@ -12,8 +12,7 @@ import notification from '@/mixins/notification'
 Vue.mixin(notification)
 
 export default {
-  name: 'Default',
-  middleware: 'auth'
+  name: 'Login',
 }
 </script>
 
