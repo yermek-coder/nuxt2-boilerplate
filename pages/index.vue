@@ -10,7 +10,7 @@ export default {
 <style lang="scss" scoped>
 h1 {
   color: red;
-  @include respond('sm') {
+  @include respond-to('sm') {
     color: turquoise;
   }
 }
