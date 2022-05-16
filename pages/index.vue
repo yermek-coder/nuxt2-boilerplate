@@ -1,17 +1,24 @@
 <template>
-  <div class="container-wide">
-    <nav>
-      <div class="logo-wrapper">
-        <div class="logo">logo</div>
+  <div class="wrapper">
+    <base-article1></base-article1>
+    <base-article2></base-article2>
+    <base-form></base-form>
+    <base-reviews></base-reviews>
+    <base-footer></base-footer>
+    <div class="character-wrapper">
+      <div class="character">
+        <img
+          src="@/assets/images/character/character_tie.svg"
+          alt=""
+          class="tie"
+        />
+        <img
+          src="@/assets/images/character/character.svg"
+          alt=""
+          class="body"
+        />
       </div>
-      <div class="button-wrapper">
-        <button class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </nav>
+    </div>
   </div>
 </template>
 
@@ -21,21 +28,28 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-nav {
-  height: 100px;
-  .logo-wrapper {
-    height: 100%;
-    display: table;
-    .logo {
-      display: table-cell;
-      
-      font-weight: bold;
-      font-size: 24px;
+.wrapper {
+  position: relative;
+  .character-wrapper {
+    display: none;
+    @include respond('xl') {
+      display: block;
+    }
+    position: absolute;
+    right: 294px;
+    bottom: 404px;
+    .character {
+      position: relative;
+      > img {
+        position: absolute;
+      }
+      .tie {
+        top: 103px;
+        left: 58px;
+        z-index: -1;
+      }
     }
   }
-  .button-wrapper {
-    height: 100%;
-    float: right;
-  }
 }
+
 </style>

@@ -2,18 +2,20 @@
 @import 'variables';
 @import 'responsive';
 
-body {
+body, button {
   font-family: 'Montserrat', sans-serif;
 }
 h1,
 h6 {
   color: $primary-2;
+  text-transform: uppercase;
 }
 
 h2,
 h4,
 h5 {
   color: $white;
+  text-transform: uppercase;
 }
 
 h1 {
