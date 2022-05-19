@@ -29,8 +29,10 @@ export default {
   plugins: [
     '@/plugins/v-click-outside.js',
     '@/plugins/v-intersection.js',
+    '@/plugins/v-focus.js',
     '@/plugins/event-bus.js',
     '@/plugins/api.js',
+
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
