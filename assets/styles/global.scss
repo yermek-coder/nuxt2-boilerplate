@@ -22,3 +22,75 @@ $shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 $shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
   0 4px 6px -2px rgba(0, 0, 0, 0.05);
 $shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+//down
+.offset-down-enter-active {
+  animation: offset-down-start 0.15s;
+}
+.offset-down-leave-active {
+  animation: offset-down-finish 0.15s;
+}
+
+@keyframes offset-down-start {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0px);
+  }
+}
+@keyframes offset-down-finish {
+  from {
+    opacity: 1;
+    transform: translate(-50%, 0px);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+}
+//left
+.offset-left-enter-active {
+  transition: all 0.1s ease-in;
+}
+.offset-left-leave-active {
+  transition: all 0.1s ease-out;
+}
+.offset-left-enter {
+  transform: translateX(20px);
+  opacity: 0;
+}
+.offset-left-leave-to {
+  transform: translateX(-20px);
+  opacity: 0;
+}
+
+//right
+.offset-right-enter-active {
+  transition: all 0.1s ease-in;
+}
+.offset-right-leave-active {
+  transition: all 0.1s ease-out;
+}
+.offset-right-enter {
+  transform: translateX(-20px);
+  opacity: 0;
+}
+.offset-right-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+//fade
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.15s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-move {
+  transition: transform 0.15s;
+}
