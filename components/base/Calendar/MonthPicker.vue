@@ -1,54 +1,59 @@
 <template>
-  <div class="month-picker" v-click-outside="hideModal">
-    <div @click="toggleModal" class="header">
-      <span>{{ monthAndYear }} </span>
-    </div>
-    <div v-if="showModal" class="modal">
-      <div class="header">
-        <button class="button-left" @click="getPrevYears">
-          <svg width="26px" height="26px" viewBox="0 -1 16 34">
-            <path
-              d="M11.196 10c0 0.143-0.071 0.304-0.179 0.411l-7.018 7.018 7.018 7.018c0.107 0.107 0.179 0.268 0.179 0.411s-0.071 0.304-0.179 0.411l-0.893 0.893c-0.107 0.107-0.268 0.179-0.411 0.179s-0.304-0.071-0.411-0.179l-8.321-8.321c-0.107-0.107-0.179-0.268-0.179-0.411s0.071-0.304 0.179-0.411l8.321-8.321c0.107-0.107 0.268-0.179 0.411-0.179s0.304 0.071 0.411 0.179l0.893 0.893c0.107 0.107 0.179 0.25 0.179 0.411z"
-              data-v-63f7b5ec=""
-            ></path>
-          </svg>
-        </button>
-        <span @click="toggleShowYears">{{ yearTitle }}</span>
-        <button class="button-right" @click="getNextYears">
-          <svg width="26px" height="26px" viewBox="-5 -1 16 34">
-            <path
-              d="M10.625 17.429c0 0.143-0.071 0.304-0.179 0.411l-8.321 8.321c-0.107 0.107-0.268 0.179-0.411 0.179s-0.304-0.071-0.411-0.179l-0.893-0.893c-0.107-0.107-0.179-0.25-0.179-0.411 0-0.143 0.071-0.304 0.179-0.411l7.018-7.018-7.018-7.018c-0.107-0.107-0.179-0.268-0.179-0.411s0.071-0.304 0.179-0.411l0.893-0.893c0.107-0.107 0.268-0.179 0.411-0.179s0.304 0.071 0.411 0.179l8.321 8.321c0.107 0.107 0.179 0.268 0.179 0.411z"
-              data-v-63f7b5ec=""
-            ></path>
-          </svg>
-        </button>
+  <div class="month-picker">
+    <transition :name="animationName" mode="out-in">
+      <div @click.stop="toggleModal" :key="'header' + monthAndYear" class="main-header">
+        <span>{{ monthAndYear }} </span>
       </div>
-      <div class="table">
-        <span
-          v-for="year in years"
-          :key="year.id"
-          v-show="showingYears"
-          :class="{ picked: year.isPicked }"
-          @click="pickYear(year.fullValue)"
-          >{{ year.value }}</span
-        >
-        <span
-          v-for="(month, i) in months"
-          :key="i"
-          v-show="!showingYears"
-          :class="{ picked: month.isPicked }"
-          @click="pickMonth(month.fullValue)"
-          >{{ month.value }}</span
-        >
+    </transition>
+
+    <transition mode="out-in" name="offset-down">
+      <div v-if="modalVisible" class="modal" v-click-outside="hideModal">
+        <div class="header">
+          <button class="button-left" @click="getPrevYears">
+            <svg width="26px" height="26px" viewBox="0 -1 16 34">
+              <path
+                d="M11.196 10c0 0.143-0.071 0.304-0.179 0.411l-7.018 7.018 7.018 7.018c0.107 0.107 0.179 0.268 0.179 0.411s-0.071 0.304-0.179 0.411l-0.893 0.893c-0.107 0.107-0.268 0.179-0.411 0.179s-0.304-0.071-0.411-0.179l-8.321-8.321c-0.107-0.107-0.179-0.268-0.179-0.411s0.071-0.304 0.179-0.411l8.321-8.321c0.107-0.107 0.268-0.179 0.411-0.179s0.304 0.071 0.411 0.179l0.893 0.893c0.107 0.107 0.179 0.25 0.179 0.411z"
+                data-v-63f7b5ec=""
+              ></path>
+            </svg>
+          </button>
+          <span @click="toggleShowYears">{{ yearTitle }}</span>
+          <button class="button-right" @click="getNextYears">
+            <svg width="26px" height="26px" viewBox="-5 -1 16 34">
+              <path
+                d="M10.625 17.429c0 0.143-0.071 0.304-0.179 0.411l-8.321 8.321c-0.107 0.107-0.268 0.179-0.411 0.179s-0.304-0.071-0.411-0.179l-0.893-0.893c-0.107-0.107-0.179-0.25-0.179-0.411 0-0.143 0.071-0.304 0.179-0.411l7.018-7.018-7.018-7.018c-0.107-0.107-0.179-0.268-0.179-0.411s0.071-0.304 0.179-0.411l0.893-0.893c0.107-0.107 0.268-0.179 0.411-0.179s0.304 0.071 0.411 0.179l8.321 8.321c0.107 0.107 0.179 0.268 0.179 0.411z"
+                data-v-63f7b5ec=""
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div class="table">
+          <span
+            v-for="year in years"
+            :key="year.id"
+            v-show="showingYears"
+            :class="{ picked: year.isPicked }"
+            @click="pickYear(year.fullValue)"
+            >{{ year.value }}</span
+          >
+          <span
+            v-for="(month, i) in months"
+            :key="i"
+            v-show="!showingYears"
+            :class="{ picked: month.isPicked }"
+            @click="pickMonth(month.fullValue)"
+            >{{ month.value }}</span
+          >
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
 <script>
 import {
   getYear,
-	getMonth,
+  getMonth,
   eachMonthOfInterval,
   eachYearOfInterval,
   isSameYear,
@@ -65,9 +70,10 @@ import { ru } from 'date-fns/locale'
 export default {
   data: () => ({
     model: null,
-		modelYear: null,
-		showModal: false,
+    modelYear: null,
+    modalVisible: false,
     showingYears: false,
+    animationName: 'offset-left',
   }),
   props: {
     value: {
@@ -77,7 +83,7 @@ export default {
   },
   created() {
     this.model = this.value
-		this.modelYear = this.value
+    this.modelYear = this.value
   },
   computed: {
     monthAndYear() {
@@ -95,7 +101,7 @@ export default {
       else return getYear(this.model)
     },
     months() {
-      const now = new Date()
+      const now = this.model
       const arr = eachMonthOfInterval({
         start: startOfYear(now),
         end: endOfYear(now),
@@ -118,21 +124,31 @@ export default {
         isPicked: isSameYear(el, this.value),
       }))
     },
+    modelDate() {
+      return format(this.model, 'yyyy-MM-dd')
+    },
   },
   watch: {
     value() {
       this.model = this.value
     },
+    model: {
+      handler(val, oldVal) {
+        if (!val || !oldVal) return
+        if (val.getTime() < oldVal.getTime()) this.animationName = 'offset-left'
+        else this.animationName = 'offset-right'
+      },
+    },
   },
   methods: {
     pickMonth(fullValue) {
-			this.model = set(this.model, { month: getMonth(fullValue) })
-			this.$emit('input', this.model)
-			this.showModal = false
+      this.model = set(this.model, { month: getMonth(fullValue) })
+      this.$emit('input', this.model)
+      this.modalVisible = false
     },
     pickYear(year) {
       this.model = set(this.model, { year: getYear(year) })
-			this.showingYears = false
+      this.showingYears = false
     },
     getNextYears() {
       if (this.showingYears) this.modelYear = addYears(this.modelYear, 12)
@@ -145,12 +161,12 @@ export default {
     toggleShowYears() {
       this.showingYears = !this.showingYears
     },
-		toggleModal() {
-			this.showModal = !this.showModal
-		},
-		hideModal() {
-			this.showModal = false
-		}
+    toggleModal() {
+      this.modalVisible = !this.modalVisible
+    },
+    hideModal() {
+      this.modalVisible = false
+    },
   },
 }
 </script>
@@ -160,7 +176,7 @@ export default {
   font-weight: 700;
   font-size: 14px;
   position: relative;
-  > .header {
+  > .main-header {
     font-size: 22px;
     cursor: pointer;
   }
@@ -169,6 +185,7 @@ export default {
   }
   .modal {
     position: absolute;
+    z-index: 2;
     left: 50%;
     transform: translateX(-50%);
     top: 150%;
